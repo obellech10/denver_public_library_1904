@@ -11,6 +11,8 @@ class LibraryTest < MiniTest::Test
 
   def setup
     @dpl = Library.new("Denver Public Library")
+    @charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
+    @harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})
   end
 
   def test_that_it_exits
@@ -20,6 +22,24 @@ class LibraryTest < MiniTest::Test
   def test_its_attributes
     assert_equal "Denver Public Library", @dpl.name
     assert_equal [], @dpl.books
-    assert_equal [], @dpl.authors 
+    assert_equal [], @dpl.authors
   end
+
+  def test_that_library_has_books_authors
+    jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+    @charlotte_bronte.add_book
+    professor = @charlotte_bronte.write("The Professor", "1857")
+    @charlotte_bronte.add_book
+    villette = @charlotte_bronte.write("Villette", "1853")
+    @harper_lee.add_book
+    mockingbird = @harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+    @harper_lee.add_book
+
+    @dpl.add_author(@charlotte_bronte)
+    @dpl.add_author(@harper_lee)
+
+    assert_equal [@charlotte_bronte, @harper_lee], @dpl.authors
+    assert_equal [jane_eyre, professor, villette, mockingbird], @dpl.books 
+  end
+
 end
