@@ -9,5 +9,9 @@ class Library
     @authors = []
   end
 
-  
+  def add_author(author)
+    @authors << author
+    binding.pry
+    @books << author.books
+  end
 end
