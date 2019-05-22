@@ -21,7 +21,7 @@ class AuthorTest < MiniTest::Test
   end
 
   def test_that_author_can_write
-    # book_1 = Book.new({author_first_name: "Charlotte", author_last_name: "Bronte", title: "Jane Erye", publication_date: "October 16, 1847"})
+    book_1 = Book.new({author_first_name: "Charlotte", author_last_name: "Bronte", title: "Jane Erye", publication_date: "October 16, 1847"})
     jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
     @charlotte_bronte.add_book
 
